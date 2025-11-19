@@ -53,7 +53,7 @@ SEMproxy::SEMproxy(const SemProxyOptions& opt)
 
   const SolverFactory::methodType methodType = getMethod(opt.method);
   const SolverFactory::implemType implemType = getImplem(opt.implem);
-  const SolverFactory::meshType meshType = getMesh(opt.mesh);
+  const SolverFactory::meshType meshType = SolverFactory::Unstruct;
   const SolverFactory::modelLocationType modelLocation =
       isModelOnNodes ? SolverFactory::modelLocationType::OnNodes
                      : SolverFactory::modelLocationType::OnElements;
@@ -115,7 +115,7 @@ SEMproxy::SEMproxy(const SemProxyOptions& opt)
   std::cout << "Number of element is " << m_mesh->getNumberOfElements()
             << std::endl;
   std::cout << "Launching the Method " << opt.method << ", the implementation "
-            << opt.implem << " and the mesh is " << opt.mesh << std::endl;
+            << opt.implem << " and the mesh is cartesian unstruct" << std::endl;
   std::cout << "Model is on " << (isModelOnNodes ? "nodes" : "elements")
             << std::endl;
   std::cout << "Physics type is " << (isElastic ? "elastic" : "acoustic")

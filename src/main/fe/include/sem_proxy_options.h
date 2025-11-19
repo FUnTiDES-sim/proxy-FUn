@@ -15,7 +15,6 @@ class SemProxyOptions
   float rcvx = 1410.f, rcvy = 1010.f, rcvz = 1010.f;
   std::string implem = "makutu";  // makutu|shiva
   std::string method = "sem";     // sem|dg
-  std::string mesh = "cartesian";
   float dt = 0.006;
   float timemax = 0.7;
   bool autodt = false;
@@ -56,8 +55,6 @@ class SemProxyOptions
         "implem", "Implementation: makutu|shiva",
         cxxopts::value<std::string>(o.implem))(
         "method", "Method: sem|dg", cxxopts::value<std::string>(o.method))(
-        "mesh", "Mesh: cartesian|ucartesian",
-        cxxopts::value<std::string>(o.mesh))(
         "dt", "Time step selection in s (default = 0.001s)",
         cxxopts::value<float>(o.dt))(
         "timemax", "Duration of the simulation in s (default = 1.5s)",
