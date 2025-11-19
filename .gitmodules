@@ -1,0 +1,15 @@
+[submodule "external/googletest"]
+	path = external/googletest
+	url = https://github.com/google/googletest
+	branch = v1.17.x
+[submodule "external/ADIOS2"]
+	path = external/ADIOS2
+	url = https://github.com/ornladios/ADIOS2
+	branch = release_211
+[submodule "external/kokkos"]
+	path = external/kokkos
+	url = https://github.com/kokkos/kokkos
+	branch = release-candidate-5.0.0
+[submodule "external/benchmark"]
+	path = external/benchmark
+	url = https://github.com/google/benchmark
