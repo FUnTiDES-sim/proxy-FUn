@@ -10,7 +10,6 @@
 #include "bindings_utils.h"
 #include "common_macros.h"
 #include "model.h"
-#include "model_struct.h"
 #include "model_unstruct.h"
 
 namespace py = pybind11;
@@ -53,38 +52,6 @@ void bind_modelapi(py::module_ &m)
       .def("domain_size", &T::domainSize)
       .def("get_min_spacing", &T::getMinSpacing)
       .def("get_max_speed", &T::getMaxSpeed);
-}
-
-// templated binder for one ModelStruct instantiation
-template <typename FloatType, typename ScalarType, int Order>
-void bind_modelstruct(py::module_ &m)
-{
-  using Base = model::ModelApi<FloatType, ScalarType>;
-  using T = model::ModelStruct<FloatType, ScalarType, Order>;
-  using Data = model::ModelStructData<FloatType, ScalarType>;
-
-  std::string name =
-      model_class_name<FloatType, ScalarType, Order>("ModelStruct");
-
-  py::class_<T, Base, std::shared_ptr<T>>(m, name.c_str())
-      .def(py::init<const Data &>());
-}
-
-// templated binder for ModelStructData
-template <typename FloatType, typename ScalarType>
-void bind_modelstructdata(py::module_ &m)
-{
-  using Data = model::ModelStructData<FloatType, ScalarType>;
-  std::string name = model_class_name<FloatType, ScalarType>("ModelStructData");
-
-  py::class_<Data>(m, name.c_str())
-      .def(py::init<>())
-      .def_readwrite("ex", &Data::ex_)
-      .def_readwrite("ey", &Data::ey_)
-      .def_readwrite("ez", &Data::ez_)
-      .def_readwrite("dx", &Data::dx_)
-      .def_readwrite("dy", &Data::dy_)
-      .def_readwrite("dz", &Data::dz_);
 }
 
 // templated binder for ModelUnstruct

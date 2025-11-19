@@ -21,25 +21,6 @@ PYBIND11_MODULE(model, m)
   model::bind_modelapi<float, long>(m);
   model::bind_modelapi<double, long>(m);
 
-  // Bind ModelStruct
-  for (int order = 1; order <= 3; ++order)
-  {
-    model::orderDispatch(order, [&](auto order_tag) {
-      constexpr int ord = decltype(order_tag)::value;
-      model::bind_modelstruct<float, int, ord>(m);
-      model::bind_modelstruct<double, int, ord>(m);
-      model::bind_modelstruct<float, long, ord>(m);
-      model::bind_modelstruct<double, long, ord>(m);
-      return nullptr;
-    });
-  }
-
-  // Bind ModelStructData
-  model::bind_modelstructdata<float, int>(m);
-  model::bind_modelstructdata<double, int>(m);
-  model::bind_modelstructdata<float, long>(m);
-  model::bind_modelstructdata<double, long>(m);
-
   // Bind ModelUnstruct
   model::bind_modelunstruct<float, int>(m);
   model::bind_modelunstruct<double, int>(m);
@@ -57,19 +38,6 @@ PYBIND11_MODULE(model, m)
   model::bind_modelbuilderbase<double, int>(m);
   model::bind_modelbuilderbase<float, long>(m);
   model::bind_modelbuilderbase<double, long>(m);
-
-  // Bind CartesianStructBuilder
-  for (int order = 1; order <= 3; ++order)
-  {
-    model::orderDispatch(order, [&](auto order_tag) {
-      constexpr int ord = decltype(order_tag)::value;
-      model::bind_cartesian_struct_builder<float, int, ord>(m);
-      model::bind_cartesian_struct_builder<double, int, ord>(m);
-      model::bind_cartesian_struct_builder<float, long, ord>(m);
-      model::bind_cartesian_struct_builder<double, long, ord>(m);
-      return nullptr;
-    });
-  }
 
   // Bind CartesianParams
   model::bind_cartesian_unstruct_params<float, int>(m);

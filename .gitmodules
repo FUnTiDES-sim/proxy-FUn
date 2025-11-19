@@ -13,3 +13,10 @@
 [submodule "external/benchmark"]
 	path = external/benchmark
 	url = https://github.com/google/benchmark
+[submodule "external/pybind11"]
+	path = external/pybind11
+	url = https://github.com/pybind/pybind11
+	branch = v3.0
+[submodule "external/pykokkos-base"]
+	path = external/pykokkos-base
+	url = https://github.com/kokkos/pykokkos-base

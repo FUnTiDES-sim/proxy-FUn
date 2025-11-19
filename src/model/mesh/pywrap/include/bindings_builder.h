@@ -8,7 +8,6 @@
 
 #include "bindings_utils.h"
 #include "builder.h"
-#include "cartesian_struct_builder.h"
 #include "cartesian_unstruct_builder.h"
 
 namespace py = pybind11;
@@ -27,23 +26,6 @@ void bind_modelbuilderbase(py::module_ &m)
   py::class_<T, std::shared_ptr<T>>(m, name.c_str())
       .def_static("max_order", []() { return T::MAX_ORDER; })
       .def("get_model", &T::getModel);
-}
-
-// template binder for CartesianStructBuilder
-template <typename FloatType, typename ScalarType, int Order>
-void bind_cartesian_struct_builder(py::module_ &m)
-{
-  using Base = model::ModelBuilderBase<FloatType, ScalarType>;
-  using T = model::CartesianStructBuilder<FloatType, ScalarType, Order>;
-  std::string name =
-      model_class_name<FloatType, ScalarType, Order>("CartesianStructBuilder");
-
-  py::class_<T, Base, std::shared_ptr<T>>(m, name.c_str())
-      .def(py::init<ScalarType, FloatType, ScalarType, FloatType, ScalarType,
-                    FloatType, bool, bool>(),
-           py::arg("ex"), py::arg("hx"), py::arg("ey"), py::arg("hy"),
-           py::arg("ez"), py::arg("hz"), py::arg("is_model_on_nodes"),
-           py::arg("is_elastic"));
 }
 
 // template binder for CartesianParams
