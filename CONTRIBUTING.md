@@ -66,35 +66,4 @@ git diff --exit-code
 
 The project's code formatting is defined in [`.clang-format`](.clang-format):
 
-## CI/CD
-
-### Format Checking
-
-Our continuous integration system automatically checks code formatting.
-**Pull requests with formatting violations will fail the build and stop any subsequent build**. 
-
-If you see formatting errors in CI:
-
-1. Pull the latest changes from your branch
-2. Run clang-format as described above
-3. Commit and push the formatting fixes
-
-### Caching
-
-Our continuous integration system uses sccache to speed up the builds.
-In some rare instances where the cache might be corrupted, you can deactivate it by adding the tag `SCCACHE_OFF` to your PR.
-
-## Submission Checklist
-
-Before submitting your pull request:
-
-- [ ] Code is properly formatted with clang-format
-- [ ] All tests pass locally
-- [ ] Commit messages are clear and descriptive
-- [ ] No formatting violations in CI checks
-
-## Questions?
-
-If you encounter any issues with formatting or have questions about the style guide, please open an issue or ask in the pull request discussion.
-
 Thank you for helping maintain code quality!
