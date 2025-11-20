@@ -43,11 +43,9 @@ The current SEM proxy supports the following data container:
 ```sh
 mkdir build
 cd build
-cmake ..
-make install
+cmake -DUSE_KOKKOS=ON -DENABLE_CUDA=ON -DUSE_VECTOR=OFF -DENABLE_PYWRAP=OFF ..
 ```
 
-By default, this builds the applications in sequential mode using `std::vector`.
 Both SEM and FD applications are compiled.
 
 ### Step 2: Run Tests & Benchmarks
@@ -71,7 +69,9 @@ ctest
 
 ```sh
 # Run SEM simulation with 100 x 100 x 100 elements
-./src/main/semproxy -ex 100
+bin/semproxy --ex 100 --ey 100 --ez 100 --method=sem --implem=makutu -o 2 --dt 0.001 --timemax 1.3 
+# Run SEM with snapshots every 10 time iteration
+bin/semproxy --ex 100 --ey 100 --ez 100 --method=sem -o 2 --dt 0.001 --timemax 2 -s --snap-interval 10 
 
 # Run FD simulation
 ./src/main/fdproxy
